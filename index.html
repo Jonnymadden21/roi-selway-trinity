@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trinity ROI Calculator — Selway Machine Tool Co.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-name">SELWAY MACHINE TOOL CO.</div>
+        <div class="brand-sub">Certified Haas Factory Outlet &middot; Since 1963</div>
+      </div>
+      <div class="header-right">
+        <span class="header-phone">(888) 735-9290</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Title -->
+  <div class="title-section">
+    <h1>Trinity Automation <span class="accent">ROI Calculator</span></h1>
+    <p class="tagline">Easy to Install. Easy to Operate. Easy to ROI!</p>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="progress-bar">
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-steps">
+      <div class="step-indicator active" data-step="1">
+        <div class="step-circle">1</div>
+        <div class="step-label">Select Machine</div>
+      </div>
+      <div class="step-indicator" data-step="2">
+        <div class="step-circle">2</div>
+        <div class="step-label">Choose Trinity</div>
+      </div>
+      <div class="step-indicator" data-step="3">
+        <div class="step-circle">3</div>
+        <div class="step-label">Configure Shop</div>
+      </div>
+      <div class="step-indicator" data-step="4">
+        <div class="step-circle">4</div>
+        <div class="step-label">Results</div>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- STEP 1: Machine Selection -->
+    <section class="step" id="step1">
+      <h2>Select Your CNC Machine</h2>
+      <p class="step-desc">Choose the machine you want to automate</p>
+
+      <div class="search-bar">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="machineSearch" placeholder="Search by model, brand, or type..." autocomplete="off">
+      </div>
+
+      <div class="brand-filters" id="brandFilters"></div>
+
+      <div class="machine-grid" id="machineGrid"></div>
+
+      <div class="nav-buttons">
+        <div></div>
+        <button class="btn btn-primary" id="btnToStep2" disabled>Next: Choose Trinity Model</button>
+      </div>
+    </section>
+
+    <!-- STEP 2: Trinity Selection -->
+    <section class="step hidden" id="step2">
+      <h2>Choose Your Trinity System</h2>
+      <p class="step-desc">Compatible models for your <span id="selectedMachineName" class="accent"></span></p>
+
+      <div class="trinity-grid" id="trinityGrid"></div>
+
+      <div class="nav-buttons">
+        <button class="btn btn-secondary" id="btnBackTo1">Back</button>
+        <button class="btn btn-primary" id="btnToStep3" disabled>Next: Configure Shop</button>
+      </div>
+    </section>
+
+    <!-- STEP 3: Shop Configuration -->
+    <section class="step hidden" id="step3">
+      <h2>Configure Your Shop</h2>
+      <p class="step-desc">Tell us about your operation for an accurate ROI analysis</p>
+
+      <div class="config-grid">
+        <!-- Basic Inputs -->
+        <div class="config-card">
+          <h3>Shop Details</h3>
+          <div class="input-group">
+            <label>Shop Rate ($/hr)</label>
+            <div class="input-with-unit">
+              <span class="unit">$</span>
+              <input type="number" id="shopRate" value="125" min="25" max="300" step="5">
+              <span class="unit">/hr</span>
+            </div>
+          </div>
+          <div class="input-group">
+            <label>Hours per Shift</label>
+            <input type="number" id="hrsPerShift" value="8" min="4" max="12" step="1">
+          </div>
+          <div class="input-group">
+            <label>Operator Wage ($/hr)</label>
+            <div class="input-with-unit">
+              <span class="unit">$</span>
+              <input type="number" id="operatorWage" value="30" min="15" max="50" step="1">
+              <span class="unit">/hr</span>
+            </div>
+          </div>
+          <div class="input-group">
+            <label>Working Days / Year</label>
+            <input type="number" id="workingDays" value="250" min="200" max="300" step="5">
+          </div>
+        </div>
+
+        <!-- Shift Selection -->
+        <div class="config-card">
+          <h3>Shift Configuration</h3>
+
+          <div class="shift-group">
+            <label>Manned Shifts <span class="tag tag-blue">OPERATOR PRESENT</span></label>
+            <div class="btn-group" id="mannedShifts" data-value="1">
+              <button data-val="0">0</button>
+              <button data-val="1" class="active">1</button>
+              <button data-val="2">2</button>
+              <button data-val="3">3</button>
+            </div>
+          </div>
+
+          <div class="shift-group">
+            <label>Unmanned Shifts <span class="tag tag-teal">LIGHTS-OUT</span></label>
+            <div class="btn-group" id="unmannedShifts" data-value="1">
+              <button data-val="0">0</button>
+              <button data-val="1" class="active">1</button>
+              <button data-val="2">2</button>
+              <button data-val="3">3</button>
+            </div>
+          </div>
+
+          <div class="info-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="info-icon"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            <p>During manned shifts, automation boosts utilization. But unmanned shifts go from 0% to 80% &mdash; that's <strong>entirely new revenue</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Utilization Sliders -->
+      <div class="util-grid">
+        <div class="util-card util-manned">
+          <h3><span class="dot dot-blue"></span> Manned Shift Utilization</h3>
+          <div class="slider-row">
+            <label>Before Automation</label>
+            <input type="range" id="mannedUtilBefore" min="10" max="80" value="40" class="slider slider-blue">
+            <span class="slider-val mono" id="mannedUtilBeforeVal">40%</span>
+          </div>
+          <div class="slider-row">
+            <label>After Automation</label>
+            <input type="range" id="mannedUtilAfter" min="50" max="95" value="80" class="slider slider-blue">
+            <span class="slider-val mono" id="mannedUtilAfterVal">80%</span>
+          </div>
+        </div>
+
+        <div class="util-card util-unmanned">
+          <h3><span class="dot dot-teal"></span> Unmanned Shift Utilization</h3>
+          <div class="slider-row">
+            <label>Before Automation</label>
+            <input type="range" id="unmannedUtilBefore" min="0" max="30" value="0" class="slider slider-teal">
+            <span class="slider-val mono" id="unmannedUtilBeforeVal">0%</span>
+          </div>
+          <div class="slider-row">
+            <label>After Automation</label>
+            <input type="range" id="unmannedUtilAfter" min="40" max="95" value="80" class="slider slider-teal">
+            <span class="slider-val mono" id="unmannedUtilAfterVal">80%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn btn-secondary" id="btnBackTo2">Back</button>
+        <button class="btn btn-primary btn-large" id="btnCalculate">Calculate ROI</button>
+      </div>
+    </section>
+
+    <!-- STEP 4: Results -->
+    <section class="step hidden" id="step4">
+
+      <!-- Hero Stats -->
+      <div class="hero-stats" id="heroStats"></div>
+
+      <!-- ROI Timeline -->
+      <div class="section-title">ROI Timeline</div>
+      <div class="roi-timeline" id="roiTimeline"></div>
+
+      <!-- Shift Impact -->
+      <div class="section-title">Shift-by-Shift Impact</div>
+      <div class="shift-impact" id="shiftImpact"></div>
+      <div class="shift-summary" id="shiftSummary"></div>
+
+      <!-- Annual Breakdown -->
+      <div class="section-title">Annual Benefit Breakdown</div>
+      <div class="breakdown-card" id="breakdownCard"></div>
+
+      <!-- Financing -->
+      <div class="section-title">Financing</div>
+      <div class="financing-section" id="financingSection"></div>
+
+      <!-- Section 179 -->
+      <div class="s179-callout" id="s179Callout"></div>
+
+      <!-- Proposal Download -->
+      <div class="section-title">Download Proposal</div>
+      <div class="proposal-section">
+        <div class="proposal-inputs">
+          <div class="input-group">
+            <label>Customer Name</label>
+            <input type="text" id="custName" placeholder="John Smith">
+          </div>
+          <div class="input-group">
+            <label>Company Name</label>
+            <input type="text" id="custCompany" placeholder="Acme Machine Shop">
+          </div>
+          <div class="input-group">
+            <label>Sales Rep Name</label>
+            <input type="text" id="repName" placeholder="Your Name">
+          </div>
+        </div>
+        <button class="btn btn-primary btn-large" id="btnDownload">Download Branded Proposal</button>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn btn-secondary" id="btnBackTo3">Back: Adjust Inputs</button>
+        <button class="btn btn-secondary" id="btnStartOver">Start Over</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>SELWAY MACHINE TOOL CO. &middot; Since 1963 &middot; California &middot; Oregon &middot; Washington &middot; Utah</p>
+    <p>(888) 735-9290 &middot; selwaytool.com &middot; automation@selwaytool.com</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

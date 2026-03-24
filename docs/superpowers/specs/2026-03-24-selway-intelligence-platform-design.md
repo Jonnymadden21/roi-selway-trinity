@@ -319,6 +319,6 @@ selway-intelligence/
 
 ## 12. Accounts Needed
 
-- **Cloudflare:** Free account for Workers, D1, Cron Triggers
+- **Cloudflare:** Workers Paid plan ($5/month) for Workers, D1, Cron Triggers
 - **Resend:** Free account for email delivery (resend.com)
 - **GitHub:** Already set up (Jonnymadden21) — new repo for this project

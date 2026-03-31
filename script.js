@@ -45,6 +45,11 @@ const MACHINES = [
   { id:'nxv', model:'NXV1020A', brand:'YCM', type:'VMC', axes:3, compat:['AI1','AX2'], rec:'AX2' },
   { id:'robo', model:'Robodrill', brand:'Fanuc', type:'VMC', axes:3, compat:['AI1','AX1'], rec:'AX1' },
   { id:'s700', model:'Speedio S700', brand:'Brother', type:'VMC', axes:3, compat:['AI1','AX1'], rec:'AX1' },
+  // GENERIC SIZE OPTIONS (for machines not listed)
+  { id:'gen_sm', model:'Small CNC', brand:'Other', type:'VMC', axes:3, compat:['AI1','AX1'], rec:'AX1', generic:true, desc:'Max part: 12" x 9" H · Max weight: 35 lbs' },
+  { id:'gen_md', model:'Medium CNC', brand:'Other', type:'VMC', axes:3, compat:['AI1','AX2','AX2D'], rec:'AX2', generic:true, desc:'Max part: 16" x 9" H · Max weight: 55 lbs' },
+  { id:'gen_lg', model:'Large CNC', brand:'Other', type:'VMC', axes:3, compat:['AI1','AX5','AX5H','AX2D'], rec:'AX5', generic:true, desc:'Max part: 20" x 12" H · Max weight: 75 lbs' },
+  { id:'gen_xl', model:'Extra Large CNC', brand:'Other', type:'VMC', axes:3, compat:['AI1','AX5H'], rec:'AX5H', generic:true, desc:'Max part: 20"+ x 12"+ H · Max weight: 180 lbs' },
 ];
 
 // ===== TRINITY MODEL DATA =====
@@ -107,11 +112,13 @@ function renderMachineGrid() {
       m.type.toLowerCase().includes(search);
     return matchBrand && matchSearch;
   });
+  // Note: machine data is hardcoded (not user input), safe for innerHTML
   grid.innerHTML = filtered.map(m => `
-    <div class="machine-card${state.selectedMachine?.id === m.id ? ' selected' : ''}" data-id="${m.id}">
+    <div class="machine-card${state.selectedMachine?.id === m.id ? ' selected' : ''}${m.generic ? ' generic' : ''}" data-id="${m.id}">
       <div class="machine-brand">${m.brand}</div>
       <div class="machine-model">${m.model}</div>
       <div class="machine-meta"><span>${m.type}</span><span>${m.axes}-Axis</span></div>
+      ${m.generic ? `<div class="machine-desc">${m.desc}</div><div class="generic-warning">Prices may vary — contact us for exact quote</div>` : ''}
     </div>
   `).join('');
   grid.querySelectorAll('.machine-card').forEach(card => {

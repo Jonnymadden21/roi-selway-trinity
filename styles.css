@@ -63,6 +63,9 @@ body {
 .brand {
   display: flex; align-items: center; gap: 12px;
 }
+.brand-logo-img {
+  height: 40px; width: auto; flex-shrink: 0;
+}
 .brand-logo {
   width: 40px; height: 40px; border-radius: 8px;
   background: var(--gold); color: #fff;
@@ -190,6 +193,10 @@ body {
 .machine-model { font-size: 16px; font-weight: 700; color: var(--text-bright); }
 .machine-meta { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
 .machine-meta span { margin-right: 8px; }
+
+.machine-card.generic { border-style: dashed; }
+.machine-desc { font-size: 11px; color: var(--text-dim); margin-top: 6px; line-height: 1.4; }
+.generic-warning { font-size: 10px; color: var(--gold-dark); font-weight: 600; margin-top: 6px; padding: 4px 8px; background: var(--gold-glow); border-radius: 4px; }
 
 /* ========== TRINITY GRID ========== */
 .trinity-grid {

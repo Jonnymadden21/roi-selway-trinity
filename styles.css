@@ -194,6 +194,7 @@ body {
 .machine-meta { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
 .machine-meta span { margin-right: 8px; }
 
+.util-source { font-size: 10px; color: var(--text-muted); font-style: italic; margin-bottom: 12px; margin-top: -4px; }
 .machine-card.generic { border-style: dashed; }
 .machine-desc { font-size: 11px; color: var(--text-dim); margin-top: 6px; line-height: 1.4; }
 .generic-warning { font-size: 10px; color: var(--gold-dark); font-weight: 600; margin-top: 6px; padding: 4px 8px; background: var(--gold-glow); border-radius: 4px; }

@@ -569,38 +569,38 @@ function downloadProposal() {
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Outfit', sans-serif; color: #1A1A1A; background: #FFFFFF; max-width: 800px; margin: 0 auto; padding: 40px 32px; line-height: 1.5; }
   .mono { font-family: 'DM Mono', monospace; }
-  .accent { color: #C49A3A; }
+  .accent { color: #1A1A1A; font-weight: 700; }
   .header { border-bottom: 3px solid #D4A843; padding-bottom: 20px; margin-bottom: 24px; display: flex; align-items: flex-start; gap: 16px; }
   .header-logo { width: 44px; height: 44px; border-radius: 8px; background: #D4A843; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; letter-spacing: 1px; flex-shrink: 0; margin-top: 4px; }
-  .header-text h1 { font-size: 14px; letter-spacing: 3px; font-weight: 700; color: #C49A3A; }
+  .header-text h1 { font-size: 14px; letter-spacing: 3px; font-weight: 700; color: #1A1A1A; }
   .header-text h2 { font-size: 28px; font-weight: 700; margin-top: 4px; color: #1A1A1A; }
-  .header-meta { display: flex; gap: 32px; font-size: 13px; color: #666666; margin-top: 10px; }
+  .header-meta { display: flex; gap: 32px; font-size: 13px; color: #333333; margin-top: 10px; }
   .section { margin-bottom: 28px; }
-  .section h3 { font-size: 16px; font-weight: 700; border-bottom: 1px solid #E0E0E0; padding-bottom: 6px; margin-bottom: 12px; color: #C49A3A; }
+  .section h3 { font-size: 16px; font-weight: 700; border-bottom: 1px solid #E0E0E0; padding-bottom: 6px; margin-bottom: 12px; color: #1A1A1A; }
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
   .grid4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
   .stat { background: #F9F9F9; border: 1px solid #E0E0E0; border-radius: 8px; padding: 14px; }
-  .stat .label { font-size: 11px; color: #666666; }
-  .stat .value { font-family: 'DM Mono', monospace; font-size: 22px; font-weight: 500; color: #C49A3A; }
-  .stat .sub { font-size: 11px; color: #999999; }
+  .stat .label { font-size: 11px; color: #333333; }
+  .stat .value { font-family: 'DM Mono', monospace; font-size: 22px; font-weight: 600; color: #1A1A1A; }
+  .stat .sub { font-size: 11px; color: #555555; }
   .stat-highlight { background: rgba(212,168,67,0.08); border-color: #D4A843; }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; color: #1A1A1A; }
   th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #E0E0E0; }
-  th { font-weight: 600; color: #666666; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
-  td.num { font-family: 'DM Mono', monospace; text-align: right; }
+  th { font-weight: 600; color: #333333; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td.num { font-family: 'DM Mono', monospace; text-align: right; color: #1A1A1A; }
   .total-row { font-weight: 700; border-top: 2px solid #D4A843; }
-  .total-row td.num { color: #C49A3A; font-size: 16px; }
-  .cost-row td.num { color: #E65100; }
+  .total-row td.num { color: #1A1A1A; font-size: 16px; font-weight: 700; }
+  .cost-row td.num { color: #1A1A1A; }
   .callout { background: rgba(212,168,67,0.07); border: 1px solid rgba(212,168,67,0.25); border-radius: 8px; padding: 16px; margin-top: 20px; }
-  .callout h4 { color: #C49A3A; font-size: 14px; margin-bottom: 4px; }
-  .callout p { font-size: 13px; color: #666666; }
+  .callout h4 { color: #1A1A1A; font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .callout p { font-size: 13px; color: #333333; }
   .cta { background: #D4A843; color: #1A1A1A; border-radius: 8px; padding: 24px; text-align: center; margin-top: 32px; }
   .cta h3 { font-size: 20px; margin-bottom: 6px; font-weight: 700; }
   .cta p { font-size: 14px; opacity: 0.85; }
-  .footer { text-align: center; font-size: 11px; color: #999999; margin-top: 40px; padding-top: 16px; border-top: 1px solid #E0E0E0; }
+  .footer { text-align: center; font-size: 11px; color: #333333; margin-top: 40px; padding-top: 16px; border-top: 1px solid #E0E0E0; }
   .bar-row { margin-bottom: 6px; }
-  .bar-label { display: flex; justify-content: space-between; font-size: 11px; color: #666666; }
+  .bar-label { display: flex; justify-content: space-between; font-size: 11px; color: #333333; }
   .bar-track { height: 8px; background: #E0E0E0; border-radius: 4px; }
   .bar-fill { height: 100%; border-radius: 4px; background: #D4A843; }
   .bar-fill.blue { background: #1565C0; }

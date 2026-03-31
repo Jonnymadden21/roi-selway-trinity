@@ -1,5 +1,5 @@
 // ============================================================
-// TRINITY ROI CALCULATOR — Selway Machine Tool Co.
+// TRINITY ROI CALCULATOR — Trinity Automation
 // ============================================================
 
 // ===== MACHINE DATA =====
@@ -477,12 +477,12 @@ function renderFinancing() {
     <div class="fin-inputs">
       <div class="input-group">
         <label>Down Payment %</label>
-        <input type="range" id="finDown" min="0" max="50" step="5" value="${state.finDown}" class="slider slider-teal" style="width:100%">
+        <input type="range" id="finDown" min="0" max="50" step="5" value="${state.finDown}" class="slider slider-gold" style="width:100%">
         <span class="mono" id="finDownVal">${state.finDown}%</span>
       </div>
       <div class="input-group">
         <label>Interest Rate %</label>
-        <input type="range" id="finRate" min="0" max="15" step="0.25" value="${state.finRate}" class="slider slider-teal" style="width:100%">
+        <input type="range" id="finRate" min="0" max="15" step="0.25" value="${state.finRate}" class="slider slider-gold" style="width:100%">
         <span class="mono" id="finRateVal">${state.finRate}%</span>
       </div>
       <div class="input-group">
@@ -549,7 +549,7 @@ function downloadProposal() {
   const m = state.selectedMachine;
   const custName = document.getElementById('custName').value || 'Valued Customer';
   const custCompany = document.getElementById('custCompany').value || '';
-  const repName = document.getElementById('repName').value || 'Selway Sales Team';
+  const repName = document.getElementById('repName').value || 'Trinity Automation Sales Team';
   const today = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
 
   const html = `<!DOCTYPE html>
@@ -560,53 +560,57 @@ function downloadProposal() {
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Outfit', sans-serif; color: #1f2937; max-width: 800px; margin: 0 auto; padding: 40px 32px; line-height: 1.5; }
+  body { font-family: 'Outfit', sans-serif; color: #1A1A1A; background: #FFFFFF; max-width: 800px; margin: 0 auto; padding: 40px 32px; line-height: 1.5; }
   .mono { font-family: 'DM Mono', monospace; }
-  .accent { color: #0d9488; }
-  .header { border-bottom: 3px solid #0d9488; padding-bottom: 20px; margin-bottom: 24px; }
-  .header h1 { font-size: 14px; letter-spacing: 3px; font-weight: 700; color: #0d9488; }
-  .header h2 { font-size: 28px; font-weight: 700; margin-top: 4px; }
-  .header-meta { display: flex; gap: 32px; font-size: 13px; color: #6b7280; margin-top: 10px; }
+  .accent { color: #C49A3A; }
+  .header { border-bottom: 3px solid #D4A843; padding-bottom: 20px; margin-bottom: 24px; display: flex; align-items: flex-start; gap: 16px; }
+  .header-logo { width: 44px; height: 44px; border-radius: 8px; background: #D4A843; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; letter-spacing: 1px; flex-shrink: 0; margin-top: 4px; }
+  .header-text h1 { font-size: 14px; letter-spacing: 3px; font-weight: 700; color: #C49A3A; }
+  .header-text h2 { font-size: 28px; font-weight: 700; margin-top: 4px; color: #1A1A1A; }
+  .header-meta { display: flex; gap: 32px; font-size: 13px; color: #666666; margin-top: 10px; }
   .section { margin-bottom: 28px; }
-  .section h3 { font-size: 16px; font-weight: 700; border-bottom: 1px solid #e5e7eb; padding-bottom: 6px; margin-bottom: 12px; color: #0d9488; }
+  .section h3 { font-size: 16px; font-weight: 700; border-bottom: 1px solid #E0E0E0; padding-bottom: 6px; margin-bottom: 12px; color: #C49A3A; }
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
   .grid4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
-  .stat { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px; }
-  .stat .label { font-size: 11px; color: #6b7280; }
-  .stat .value { font-family: 'DM Mono', monospace; font-size: 22px; font-weight: 500; color: #0d9488; }
-  .stat .sub { font-size: 11px; color: #9ca3af; }
-  .stat-highlight { background: #f0fdfa; border-color: #0d9488; }
+  .stat { background: #F9F9F9; border: 1px solid #E0E0E0; border-radius: 8px; padding: 14px; }
+  .stat .label { font-size: 11px; color: #666666; }
+  .stat .value { font-family: 'DM Mono', monospace; font-size: 22px; font-weight: 500; color: #C49A3A; }
+  .stat .sub { font-size: 11px; color: #999999; }
+  .stat-highlight { background: rgba(212,168,67,0.08); border-color: #D4A843; }
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #e5e7eb; }
-  th { font-weight: 600; color: #6b7280; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #E0E0E0; }
+  th { font-weight: 600; color: #666666; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
   td.num { font-family: 'DM Mono', monospace; text-align: right; }
-  .total-row { font-weight: 700; border-top: 2px solid #0d9488; }
-  .total-row td.num { color: #0d9488; font-size: 16px; }
-  .cost-row td.num { color: #d97706; }
-  .callout { background: #f0fdfa; border: 1px solid #99f6e4; border-radius: 8px; padding: 16px; margin-top: 20px; }
-  .callout h4 { color: #0d9488; font-size: 14px; margin-bottom: 4px; }
-  .callout p { font-size: 13px; color: #6b7280; }
-  .cta { background: #0d9488; color: #fff; border-radius: 8px; padding: 24px; text-align: center; margin-top: 32px; }
-  .cta h3 { font-size: 20px; margin-bottom: 6px; }
-  .cta p { font-size: 14px; opacity: 0.9; }
-  .footer { text-align: center; font-size: 11px; color: #9ca3af; margin-top: 40px; padding-top: 16px; border-top: 1px solid #e5e7eb; }
+  .total-row { font-weight: 700; border-top: 2px solid #D4A843; }
+  .total-row td.num { color: #C49A3A; font-size: 16px; }
+  .cost-row td.num { color: #E65100; }
+  .callout { background: rgba(212,168,67,0.07); border: 1px solid rgba(212,168,67,0.25); border-radius: 8px; padding: 16px; margin-top: 20px; }
+  .callout h4 { color: #C49A3A; font-size: 14px; margin-bottom: 4px; }
+  .callout p { font-size: 13px; color: #666666; }
+  .cta { background: #D4A843; color: #1A1A1A; border-radius: 8px; padding: 24px; text-align: center; margin-top: 32px; }
+  .cta h3 { font-size: 20px; margin-bottom: 6px; font-weight: 700; }
+  .cta p { font-size: 14px; opacity: 0.85; }
+  .footer { text-align: center; font-size: 11px; color: #999999; margin-top: 40px; padding-top: 16px; border-top: 1px solid #E0E0E0; }
   .bar-row { margin-bottom: 6px; }
-  .bar-label { display: flex; justify-content: space-between; font-size: 11px; color: #6b7280; }
-  .bar-track { height: 8px; background: #e5e7eb; border-radius: 4px; }
-  .bar-fill { height: 100%; border-radius: 4px; background: #0d9488; }
-  .bar-fill.blue { background: #3b82f6; }
+  .bar-label { display: flex; justify-content: space-between; font-size: 11px; color: #666666; }
+  .bar-track { height: 8px; background: #E0E0E0; border-radius: 4px; }
+  .bar-fill { height: 100%; border-radius: 4px; background: #D4A843; }
+  .bar-fill.blue { background: #1565C0; }
   @media print { body { padding: 20px; } .cta { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
 </style>
 </head>
 <body>
 <div class="header">
-  <h1>SELWAY MACHINE TOOL CO.</h1>
-  <h2>Trinity Automation ROI Proposal</h2>
-  <div class="header-meta">
-    <span>Prepared for: <strong>${custName}</strong>${custCompany ? ' — ' + custCompany : ''}</span>
-    <span>Date: ${today}</span>
-    <span>Rep: ${repName}</span>
+  <div class="header-logo">TRA</div>
+  <div class="header-text">
+    <h1>TRINITY AUTOMATION</h1>
+    <h2>Trinity Automation ROI Proposal</h2>
+    <div class="header-meta">
+      <span>Prepared for: <strong>${custName}</strong>${custCompany ? ' — ' + custCompany : ''}</span>
+      <span>Date: ${today}</span>
+      <span>Rep: ${repName}</span>
+    </div>
   </div>
 </div>
 
@@ -683,12 +687,12 @@ function downloadProposal() {
 
 <div class="cta">
   <h3>Ready to Automate?</h3>
-  <p>${repName} · Selway Machine Tool Co.</p>
-  <p>(888) 735-9290 · automation@selwaytool.com</p>
+  <p>${repName} · Trinity Automation</p>
+  <p>800-762-6864 · sales@trinityautomation.com</p>
 </div>
 
 <div class="footer">
-  SELWAY MACHINE TOOL CO. · Since 1963 · California · Oregon · Washington · Utah · Nevada · (888) 735-9290 · selwaytool.com
+  TRINITY AUTOMATION · Since 2004 · 431 Nelo Street, Santa Clara, CA 95054 · 800-762-6864 · trinityautomation.com
 </div>
 </body>
 </html>`;

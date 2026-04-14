@@ -34,6 +34,6 @@ ROI calculator for Trinity Automation CNC pallet systems. Used by Selway Machine
 ## Customer Version
 Located at: ~/claude code selway/customer-roi/ (separate git repo)
 - Same charcoal/gold theme
-- Has Web3Forms lead capture (sends to trinity.selway@gmail.com)
-- Web3Forms key: 8d009d47-79bd-4615-be0b-bcc34bb66a50
+- Has Web3Forms lead capture (sends to jonmadden@selwaytool.com)
+- Web3Forms key: b00ba4eb-0735-408c-bc0f-192d4c094285
 - Customer-friendly language

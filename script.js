@@ -3,53 +3,83 @@
 // ============================================================
 
 // ===== MACHINE DATA =====
+// Sourced from Trinity AX Product Line PDF (compatibility table).
+// AI-1 compatibility is intentionally narrow: Haas VF-1, VF-2, DM-2,
+// DM-2+TRT160, and YCM NVX560A. SS variants are rolled into their base
+// "Series" entry. TRT160 / TRT210 are listed as explicit variants where
+// the PDF calls them out. AX4/AX4H and AX5/AX5H are paired (HD is the
+// heavier-duty pallet variant of the same footprint).
 const MACHINES = [
-  // HAAS
-  { id:'mm', model:'Mini Mill', brand:'Haas', type:'VMC', axes:3, compat:['AI1','AX1'], rec:'AX1' },
-  { id:'dm1', model:'DM-1', brand:'Haas', type:'VMC', axes:3, compat:['AI1','AX1'], rec:'AX1' },
-  { id:'dm2', model:'DM-2', brand:'Haas', type:'VMC', axes:3, compat:['AI1','AX1'], rec:'AX1' },
-  { id:'dt1', model:'DT-1', brand:'Haas', type:'Drill/Tap', axes:3, compat:['AI1','AX1'], rec:'AX1' },
-  { id:'dt2', model:'DT-2', brand:'Haas', type:'Drill/Tap', axes:3, compat:['AI1','AX1'], rec:'AX1' },
-  { id:'vf1', model:'VF-1', brand:'Haas', type:'VMC', axes:3, compat:['AI1','AX1','AX2'], rec:'AX2' },
-  { id:'vf2', model:'VF-2', brand:'Haas', type:'VMC', axes:3, compat:['AI1','AX2','AX2D'], rec:'AX2' },
-  { id:'vf2ss', model:'VF-2SS', brand:'Haas', type:'VMC', axes:3, compat:['AI1','AX2','AX2D'], rec:'AX2' },
-  { id:'vf3', model:'VF-3', brand:'Haas', type:'VMC', axes:3, compat:['AI1','AX2','AX5'], rec:'AX2' },
-  { id:'vf4', model:'VF-4', brand:'Haas', type:'VMC', axes:3, compat:['AI1','AX5','AX5H','AX2D'], rec:'AX5' },
-  { id:'vf4ss', model:'VF-4SS', brand:'Haas', type:'VMC', axes:3, compat:['AI1','AX5','AX5H','AX2D'], rec:'AX5' },
-  { id:'vf5', model:'VF-5/40', brand:'Haas', type:'VMC', axes:3, compat:['AI1','AX5H'], rec:'AX5H' },
-  { id:'vf6', model:'VF-6/40', brand:'Haas', type:'VMC', axes:3, compat:['AI1','AX5H'], rec:'AX5H' },
-  { id:'u350', model:'UMC-350', brand:'Haas', type:'5-Axis', axes:5, compat:['AI1','AX1','AX2'], rec:'AX1' },
-  { id:'u500', model:'UMC-500', brand:'Haas', type:'5-Axis', axes:5, compat:['AI1','AX2','AX2D'], rec:'AX2' },
-  { id:'u500s', model:'UMC-500SS', brand:'Haas', type:'5-Axis', axes:5, compat:['AI1','AX2','AX2D'], rec:'AX2' },
-  { id:'u750', model:'UMC-750', brand:'Haas', type:'5-Axis', axes:5, compat:['AI1','AX4','AX4H','AX5','AX5H','AX2D'], rec:'AX5' },
-  { id:'u750s', model:'UMC-750SS', brand:'Haas', type:'5-Axis', axes:5, compat:['AI1','AX4','AX4H','AX5','AX5H','AX2D'], rec:'AX5' },
-  { id:'u1000', model:'UMC-1000', brand:'Haas', type:'5-Axis', axes:5, compat:['AI1','AX5H'], rec:'AX5H' },
-  // MATSUURA
-  { id:'mx330', model:'MX-330', brand:'Matsuura', type:'5-Axis', axes:5, compat:['AX2','AX4'], rec:'AX2' },
-  { id:'mx420', model:'MX-420', brand:'Matsuura', type:'5-Axis', axes:5, compat:['AX2','AX4'], rec:'AX4' },
-  { id:'mx520', model:'MX-520', brand:'Matsuura', type:'5-Axis', axes:5, compat:['AX4','AX5'], rec:'AX4' },
-  { id:'mx850', model:'MX-850', brand:'Matsuura', type:'5-Axis', axes:5, compat:['AX4H','AX5H'], rec:'AX4H' },
-  // JTEKT / TOYODA
-  { id:'fv1165', model:'FV-1165', brand:'JTEKT/Toyoda', type:'VMC', axes:3, compat:['AI1','AX5','AX5H'], rec:'AX5' },
-  { id:'fv1365', model:'FV-1365', brand:'JTEKT/Toyoda', type:'VMC', axes:3, compat:['AI1','AX5H'], rec:'AX5H' },
-  // HWACHEON
-  { id:'v660', model:'VESTA-660', brand:'Hwacheon', type:'VMC', axes:3, compat:['AI1','AX2','AX5'], rec:'AX2' },
-  { id:'v1050', model:'VESTA-1050B', brand:'Hwacheon', type:'VMC', axes:3, compat:['AI1','AX5','AX5H'], rec:'AX5' },
-  // SMEC
-  { id:'pv83', model:'PV-8300', brand:'SMEC', type:'VMC', axes:3, compat:['AI1','AX2'], rec:'AX2' },
-  // ENSHU
-  { id:'je40', model:'JE40', brand:'Enshu', type:'HMC', axes:4, compat:['AX4'], rec:'AX4' },
-  // COMPETITOR
-  { id:'dn45', model:'DNM-4500', brand:'Doosan', type:'VMC', axes:3, compat:['AI1','AX2','AX5'], rec:'AX2' },
-  { id:'dn57', model:'DNM-5700', brand:'Doosan', type:'VMC', axes:3, compat:['AI1','AX5','AX5H'], rec:'AX5' },
-  { id:'nxv', model:'NXV1020A', brand:'YCM', type:'VMC', axes:3, compat:['AI1','AX2'], rec:'AX2' },
-  { id:'robo', model:'Robodrill', brand:'Fanuc', type:'VMC', axes:3, compat:['AI1','AX1'], rec:'AX1' },
-  { id:'s700', model:'Speedio S700', brand:'Brother', type:'VMC', axes:3, compat:['AI1','AX1'], rec:'AX1' },
-  // GENERIC SIZE OPTIONS (for machines not listed)
-  { id:'gen_sm', model:'Small CNC', brand:'Other', type:'VMC', axes:3, compat:['AI1','AX1'], rec:'AX1', generic:true, desc:'Max part: 12" x 9" H · Max weight: 35 lbs' },
-  { id:'gen_md', model:'Medium CNC', brand:'Other', type:'VMC', axes:3, compat:['AI1','AX2','AX2D'], rec:'AX2', generic:true, desc:'Max part: 16" x 9" H · Max weight: 55 lbs' },
-  { id:'gen_lg', model:'Large CNC', brand:'Other', type:'VMC', axes:3, compat:['AI1','AX5','AX5H','AX2D'], rec:'AX5', generic:true, desc:'Max part: 20" x 12" H · Max weight: 75 lbs' },
-  { id:'gen_xl', model:'Extra Large CNC', brand:'Other', type:'VMC', axes:3, compat:['AI1','AX5H'], rec:'AX5H', generic:true, desc:'Max part: 20"+ x 12"+ H · Max weight: 180 lbs' },
+  // ===== HAAS — Drill/Tap + Compact VMC =====
+  { id:'dm1', model:'DM-1', brand:'Haas', type:'VMC', axes:3, compat:['AX1','AX2','AX2D'], rec:'AX1' },
+  { id:'dm2', model:'DM-2', brand:'Haas', type:'VMC', axes:3, compat:['AI1','AX1','AX2','AX2D'], rec:'AX1' },
+  { id:'dm2_trt160', model:'DM-2 + TRT160', brand:'Haas', type:'5-Axis', axes:5, compat:['AI1'], rec:'AI1' },
+  { id:'dt1', model:'DT-1', brand:'Haas', type:'Drill/Tap', axes:3, compat:['AX1','AX2','AX2D'], rec:'AX1' },
+  { id:'dt2', model:'DT-2', brand:'Haas', type:'Drill/Tap', axes:3, compat:['AX1','AX2','AX2D'], rec:'AX1' },
+
+  // ===== HAAS — VF Series (base + TRT variants) =====
+  { id:'vf1', model:'VF-1', brand:'Haas', type:'VMC', axes:3, compat:['AI1','AX1','AX2','AX2D','AX4','AX4H','AX5','AX5H'], rec:'AX2' },
+  { id:'vf1_trt160', model:'VF-1 + TRT160', brand:'Haas', type:'5-Axis', axes:5, compat:['AX2','AX2D','AX5','AX5H'], rec:'AX2' },
+  { id:'vf1_trt210', model:'VF-1 + TRT210', brand:'Haas', type:'5-Axis', axes:5, compat:['AX2','AX2D','AX5','AX5H'], rec:'AX2' },
+  { id:'vf2', model:'VF-2 Series', brand:'Haas', type:'VMC', axes:3, compat:['AI1','AX1','AX2','AX2D','AX4','AX4H','AX5','AX5H'], rec:'AX2' },
+  { id:'vf2_trt160', model:'VF-2 + TRT160', brand:'Haas', type:'5-Axis', axes:5, compat:['AX1','AX2','AX2D','AX5','AX5H'], rec:'AX2' },
+  { id:'vf2_trt210', model:'VF-2 + TRT210', brand:'Haas', type:'5-Axis', axes:5, compat:['AX1','AX2','AX2D','AX5','AX5H'], rec:'AX2' },
+  { id:'vf3', model:'VF-3', brand:'Haas', type:'VMC', axes:3, compat:['AX1','AX2','AX2D','AX4','AX4H','AX5','AX5H'], rec:'AX2' },
+  { id:'vf3_trt160', model:'VF-3 + TRT160', brand:'Haas', type:'5-Axis', axes:5, compat:['AX2','AX2D','AX5','AX5H'], rec:'AX5' },
+  { id:'vf3_trt210', model:'VF-3 + TRT210', brand:'Haas', type:'5-Axis', axes:5, compat:['AX2','AX2D','AX5','AX5H'], rec:'AX5' },
+  { id:'vf4', model:'VF-4 Series', brand:'Haas', type:'VMC', axes:3, compat:['AX1','AX2','AX2D','AX4','AX4H','AX5','AX5H'], rec:'AX5' },
+  { id:'vf4_trt160', model:'VF-4 + TRT160', brand:'Haas', type:'5-Axis', axes:5, compat:['AX2','AX2D','AX5','AX5H'], rec:'AX5' },
+  { id:'vf4_trt210', model:'VF-4 + TRT210', brand:'Haas', type:'5-Axis', axes:5, compat:['AX2','AX2D','AX5','AX5H'], rec:'AX5' },
+  { id:'vf5', model:'VF-5 Series', brand:'Haas', type:'VMC', axes:3, compat:['AX5','AX5H'], rec:'AX5H' },
+  { id:'vf6', model:'VF-6 Series', brand:'Haas', type:'VMC', axes:3, compat:['AX5','AX5H'], rec:'AX5H' },
+
+  // ===== HAAS — UMC Series =====
+  { id:'u350h', model:'UMC-350 HD', brand:'Haas', type:'5-Axis', axes:5, compat:['AX1','AX2','AX2D'], rec:'AX2' },
+  { id:'u500', model:'UMC-500', brand:'Haas', type:'5-Axis', axes:5, compat:['AX2','AX2D','AX4','AX4H','AX5','AX5H'], rec:'AX2' },
+  { id:'u750', model:'UMC-750', brand:'Haas', type:'5-Axis', axes:5, compat:['AX2','AX2D','AX4','AX4H','AX5','AX5H'], rec:'AX5' },
+  { id:'u1000', model:'UMC-1000', brand:'Haas', type:'5-Axis', axes:5, compat:['AX4','AX4H','AX5','AX5H'], rec:'AX5' },
+
+  // ===== MATSUURA =====
+  { id:'mx330', model:'MX-330', brand:'Matsuura', type:'5-Axis', axes:5, compat:['AX4','AX4H'], rec:'AX4' },
+  { id:'mx420', model:'MX-420', brand:'Matsuura', type:'5-Axis', axes:5, compat:['AX4','AX4H'], rec:'AX4' },
+  { id:'mx520', model:'MX-520', brand:'Matsuura', type:'5-Axis', axes:5, compat:['AX4','AX4H'], rec:'AX4' },
+  { id:'mx850', model:'MX-850', brand:'Matsuura', type:'5-Axis', axes:5, compat:['AX4','AX4H'], rec:'AX4H' },
+
+  // ===== KITAMURA =====
+  { id:'kit_mt4g', model:'Mytrunnion-4G', brand:'Kitamura', type:'5-Axis', axes:5, compat:['AX4','AX4H'], rec:'AX4' },
+
+  // ===== MITSUI SEIKI =====
+  { id:'ms_v55x3', model:'VERTEX 55X III', brand:'Mitsui Seiki', type:'5-Axis', axes:5, compat:['AX4','AX4H'], rec:'AX4' },
+
+  // ===== METHODS MACHINE TOOL =====
+  { id:'mmt_mb650u', model:'MB-650U', brand:'Methods', type:'5-Axis', axes:5, compat:['AX5','AX5H'], rec:'AX5' },
+
+  // ===== HWACHEON =====
+  // D2-5AX: left machine only on AX2 Duo
+  { id:'d25ax', model:'D2-5AX', brand:'Hwacheon', type:'5-Axis', axes:5, compat:['AX2','AX2D','AX4','AX4H','AX5','AX5H'], rec:'AX4' },
+
+  // ===== DOOSAN / DN SOLUTIONS =====
+  { id:'dn45', model:'DNM-4500', brand:'Doosan', type:'VMC', axes:3, compat:['AX1','AX2','AX2D','AX4','AX4H','AX5','AX5H'], rec:'AX2' },
+  { id:'dvf4000', model:'DVF 4000', brand:'Doosan', type:'5-Axis', axes:5, compat:['AX2','AX4','AX4H','AX5','AX5H'], rec:'AX4' },
+  { id:'dvf5000', model:'DVF 5000', brand:'Doosan', type:'5-Axis', axes:5, compat:['AX2','AX4','AX4H','AX5','AX5H'], rec:'AX4' },
+
+  // ===== YCM =====
+  // CX4 / NFX400A: left machine only on AX2 Duo
+  { id:'ycm_cx4', model:'CX4 / NFX400A', brand:'YCM', type:'VMC', axes:3, compat:['AX1','AX2','AX2D','AX5','AX5H'], rec:'AX2' },
+  { id:'ycm_rx65', model:'RX65', brand:'YCM', type:'5-Axis', axes:5, compat:['AX2','AX4','AX4H','AX5','AX5H'], rec:'AX4' },
+  { id:'ycm_nvx560a', model:'NVX560A', brand:'YCM', type:'VMC', axes:3, compat:['AI1'], rec:'AI1' },
+
+  // ===== BROTHER =====
+  { id:'bro_speedio', model:'Speedio Series (300, 500, 700)', brand:'Brother', type:'VMC', axes:3, compat:['AX1','AX2','AX2D'], rec:'AX1' },
+
+  // ===== FANUC =====
+  { id:'robo', model:'Robodrill', brand:'Fanuc', type:'VMC', axes:3, compat:['AX1','AX2','AX2D'], rec:'AX1' },
+
+  // ===== GENERIC SIZE OPTIONS (for machines not listed) =====
+  { id:'gen_sm', model:'Small CNC', brand:'Other', type:'VMC', axes:3, compat:['AX1'], rec:'AX1', generic:true, desc:'Max part: 12" x 9" H · Max weight: 35 lbs' },
+  { id:'gen_md', model:'Medium CNC', brand:'Other', type:'VMC', axes:3, compat:['AX2','AX2D'], rec:'AX2', generic:true, desc:'Max part: 16" x 9" H · Max weight: 55 lbs' },
+  { id:'gen_lg', model:'Large CNC', brand:'Other', type:'VMC', axes:3, compat:['AX4','AX5'], rec:'AX5', generic:true, desc:'Max part: 20" x 12" H · Max weight: 75 lbs' },
+  { id:'gen_xl', model:'Extra Large CNC', brand:'Other', type:'VMC', axes:3, compat:['AX4H','AX5H'], rec:'AX5H', generic:true, desc:'Max part: 20"+ x 12"+ H · Max weight: 180 lbs' },
 ];
 
 // ===== TRINITY MODEL DATA =====
